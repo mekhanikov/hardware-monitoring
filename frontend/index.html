@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+  <meta charset="utf-8">
+  <title>Charts example</title>
+  <meta name="description" content="Charts example">
+
+
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+
+<body id="body">
+  <script type='module'>
+        import {lineChart, buildChart} from './js/charts.js';
+
+
+
+
+
+const sheet = await buildChart();
+
+sheet.charts.forEach(function (c, i) {
+            d3.select('body').append(() => c.lineChart);
+        });
+
+
+
+
+    async function checkDailyUpdates() {
+      await sheet.nextTick();
+      setTimeout(checkDailyUpdates, 1000);
+    }
+
+    const dailyUpdatesInterval = setTimeout(checkDailyUpdates, 1000);
+
+  </script>
+</body>
+
+</html>
